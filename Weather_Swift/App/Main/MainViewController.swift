@@ -109,8 +109,9 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let postVC = ForecastViewController()
-        navigationController?.pushViewController(postVC, animated: true)
+        let forecastVC = ForecastViewController()
+        forecastVC.update(cityList[indexPath.row], isCelsius: true)
+        navigationController?.pushViewController(forecastVC, animated: true)
     }
 }
 
@@ -156,7 +157,7 @@ extension MainViewController: UISearchResultsUpdating {
 extension MainViewController: CityWeatherTableViewCelDelegate {
     func makeFavorite(indexPath: IndexPath) {
         let cityId = cityList[indexPath.row].id
-        var stateFavorite = viewModel?.isFavorites(cityId) ?? false
+        let stateFavorite = viewModel?.isFavorites(cityId) ?? false
         stateFavorite ? viewModel?.removeFavorite(cityId) : viewModel?.addFavorite(cityId)
         citiesTable.reloadRows(at: [indexPath], with: .none)
     }

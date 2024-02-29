@@ -24,7 +24,7 @@ extension WeatherApi: TargetType {
             return "current.json"
         case .getForecast:
             return "forecast.json"
-        case .search(text: let text):
+        case .search:
             return "search.json"
         }
     }

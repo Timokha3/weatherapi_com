@@ -8,7 +8,8 @@
 import UIKit
 
 class ForecastViewController: UIViewController {
-
+    @Injected var viewModel: ForecastViewModelProtocol?
+    
     private let stackViewVertical: UIStackView = {
         let edgeInset: CGFloat = 5
         let sv = UIStackView()
@@ -19,7 +20,6 @@ class ForecastViewController: UIViewController {
         sv.spacing = 5
         sv.layoutMargins = UIEdgeInsets(top: edgeInset, left: edgeInset, bottom: edgeInset, right: edgeInset)
         sv.isLayoutMarginsRelativeArrangement = true
-        sv.backgroundColor = .cyan
         return sv
     }()
     
@@ -29,10 +29,9 @@ class ForecastViewController: UIViewController {
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.distribution = .fill
-        sv.alignment = .top
+        sv.alignment = .center
         sv.layoutMargins = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: edgeInset)
         sv.isLayoutMarginsRelativeArrangement = true
-        sv.backgroundColor = .brown
         return sv
     }()
     
@@ -45,7 +44,6 @@ class ForecastViewController: UIViewController {
         sv.alignment = .bottom
         sv.layoutMargins = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: edgeInset)
         sv.isLayoutMarginsRelativeArrangement = true
-        sv.backgroundColor = .blue
         return sv
     }()
     
@@ -62,12 +60,20 @@ class ForecastViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("title.forecast", comment: "Прогноз")
         self.view.backgroundColor = .systemBackground
-        // Do any additional setup after loading the view.
-        
-        setup()
+        viewConfiguration()
     }
     
-    private func setup() {
+    func update(_ model: CityDTO, isCelsius: Bool = true) {
+        cityNameLabel.text = model.cityName
+
+        DispatchQueue.main.async { [weak self] in
+            guard self != nil else { return }
+     
+                //todo
+        }
+    }
+    
+    private func viewConfiguration() {
         
         [stackViewVertical].forEach {
             self.view.addSubview($0)
@@ -87,7 +93,5 @@ class ForecastViewController: UIViewController {
             stackViewVertical.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             stackViewVertical.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 0)
         ])
-
-    }    
-    
+    }        
 }

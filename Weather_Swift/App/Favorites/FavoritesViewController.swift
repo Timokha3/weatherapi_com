@@ -90,7 +90,7 @@ extension FavoritesViewController: UITableViewDataSource {
 extension FavoritesViewController: FavoriteTableCellViewDelegate {
     func makeFavorite(indexPath: IndexPath) {
         let cityId = cityList[indexPath.row].id
-        var stateFavorite = viewModel?.isFavorites(cityId) ?? false
+        let stateFavorite = viewModel?.isFavorites(cityId) ?? false
         if stateFavorite {
             viewModel?.removeFavorite(cityId)
             cityList.remove(at: indexPath.row)

@@ -27,11 +27,11 @@ final class MainViewModel: MainViewModelProtocol {
     @Injected var favoriteService: FavoritesServiceProtocol?
     
     var currentLatitude: Double {
-        return locationManager?.lastLocation?.coordinate.latitude ?? 0
+        return locationManager?.lastLocation?.coordinate.latitude ?? 55.75
     }
     
     var currentLongitude: Double {
-        return locationManager?.lastLocation?.coordinate.longitude ?? 0
+        return locationManager?.lastLocation?.coordinate.longitude ?? 37.62
     }
 
     func findCity(completion: @escaping (_ item: CityDTO) -> Void) {
