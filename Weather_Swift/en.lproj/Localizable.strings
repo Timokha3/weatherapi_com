@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Weather_Swift
+
+  Created by Timur on 23.02.2024.
+  
+*/
+
+//title
+"title.cities" = "Cities";
+"title.main" = "Weather";
+"title.favorites" = "Favorites";
+"title.forecast" = "Forecast";
